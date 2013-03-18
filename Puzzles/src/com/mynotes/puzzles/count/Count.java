@@ -39,8 +39,8 @@ SAMPLE OUTPUT (with DEBUG false)
 
 Given Denominations : [4 5 10 3 1 2 ]
 
-Ways to get the amount 0 are : [[]]
-Number of ways to build amount 0 : 1
+Ways to get the amount 0 are : []
+Number of ways to build amount 0 : 0
 
 
 
@@ -132,7 +132,7 @@ public class Count {
 		if (amount == 0) {
 			paths = new ArrayList<ArrayList<Integer>>();
 			path = new ArrayList<Integer>();
-			paths.add(path);
+			if (pCoin != 0)paths.add(path);
 			append(pCoin, paths);
 
 			if (DEBUG)
