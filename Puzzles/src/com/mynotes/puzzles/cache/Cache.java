@@ -22,7 +22,7 @@ public class Cache<V> {
 	private Node<V> root;
 
 	private class Node<T> {
-		V value;
+		T value;
 		HashMap<Character, Node<T>> linkedNodes =
 				new HashMap<Character, Node<T>>();
 	}
