@@ -1,0 +1,205 @@
+<button class="btn">Button 0</button>
+<button class="btn">Button 1</button>
+<button class="btn">Button 2</button>
+<script>
+    
+// ================ Declaring variables and their types ========
+    
+    // numbers
+    var myNum = 5;
+    
+    // booleans
+    var myBool = true;
+    
+    // Strings
+    var myString = 'madhur';
+    
+    // objects
+    var myObj = {
+        name: 'madhur',
+        address:'D1202 NFM Whitefield',
+        run: function() {
+            alert('run');
+        }
+            
+    };
+    
+    // arrays
+    var myArr = ['madhur', 'bansal', 'arush'];
+    
+    // functions
+    var myFunc = function(){
+        alert('myFunc');
+    };
+    
+//    console.log(myArr);
+//    console.log(myObj);
+//    console.log(myArr);
+//    console.log(myFunc);
+    
+    
+// ============= Creating objects =======================
+    
+    // simple function to return an object by setting the name
+    // #1 way to create an object
+    function dogMaker(dogName) {        
+        return {
+            name: dogName,
+            bark: function(){
+                console.log('WOOF !');
+            }
+        };        
+    }
+        
+    var fido = dogMaker('fido');
+    var spotty = dogMaker('spotty');
+    
+    
+   
+    // #2 another way to create an object and directly assign it
+    // to a variable
+    var fido3 = {
+        name : "fido3",
+        bark : function() {
+         console.log('WOOF !!');   
+        }
+    };
+    
+    
+    // JS here passes a 'new' element which can be referred to by
+    // 'this' keyword
+    // #3 another way to create an object
+    // creates a 'type' of DOG object whereas the methods above just
+    // creates a simple object
+    // see console log below
+    function Dog(dogName){
+        this.name = dogName;
+        this.bark = function() {
+            console.log('WOOF !! ');
+        }            
+    }
+    
+    var fido2 = new Dog('Fido 2'); // creating a new DOG
+    var spotty2 = new Dog('Spotty 2');
+    
+    console.log(fido); // Object {name: "fido", bark: function}
+    console.log(fido2);// Dog {name: "Fido 2", bark: function}
+    console.log(fido3);// Object {name: "fido3", bark: function}
+    
+    
+// ================= call apply bind ======================
+    
+    var kitty = {
+        name: 'kitty',
+        meow: function(){
+            console.log(this.name, ' says meoww...');
+        }
+    };
+    
+    kitty.meow(); // kitty  says meoww...
+    
+    // pass another object to become 'this' for the function defined
+    // in some other object. This is done invoking 'call' on the 
+    // function meow.
+    kitty.meow.call(fido2); // Fido 2  says meoww...
+    
+    
+    // check out the mdn for more description on call, apply and bind
+    // pretty easy after the above explanation
+    
+    
+// ============================== IIFE - Immediately invoked functions
+    
+    // These are  very useful to make a piece of code execute there and then without worrying about the variable pollution it might do as none fo the variables would escape outside the boundary of the function !!
+    
+    
+    console.log(myArr[0]);
+    console.log([1,2,3][0]); // we can use array functions immediately after we declared it.
+    
+    // similarly function can be invoked immediately after declaration
+    // this is utilized in various JS patterns
+    (function(){
+        console.log('Immediately invoked !!');
+    })();
+    
+    
+// =============== closures =======================
+
+/**
+Anything that outlives the scope of its outer function sticks around and anything that those things depend on those stick around too, even though the function execution is complete. In normal cases the variables declared inside of a function go away as soon as the function execution completes. This behavior is called CLOSURE.
+
+bind() can be used to bind a particular value to a closure - but this works only in IE9 !!.
+Can use function inside a function to have closure implemented and lock in the value.
+
+*/
+    
+    var btns = document.querySelectorAll('.btn');
+    console.log(btns);
+    
+    function makeAlertFunc(numBtn) {
+        // we do want this function to run only when the event happens
+        // with the locked in value
+        // that is why enclose this within another function
+        // locking the value, in this case - numBtn.
+        return function() {
+            alert(numBtn);
+        }
+    }
+    
+    for (var i=0; i<btns.length; i++) {
+        var btn = btns[i];
+        
+        // this would have worked if there was no value associated with
+        // each invokation, in this case index of the button
+//        btn.addEventListener('click', function() {
+//            alert(i);
+//        });
+        
+        // we can also use bind but that would work only on modern browsers like IE 9 and above.
+        
+        btn.addEventListener('click', makeAlertFunc(i));
+        
+    }
+    
+    
+// ============ Prototype (inheritance) =============
+    
+    var Animal = {
+        alive : true
+    };
+    
+    var Mammal = Object.create(Animal);
+    
+    console.log(Animal);
+    console.log(Mammal); // prototype ( _proto_ ) is Animal
+    // all these objects are mutable all along the hierarchy
+    // if we change anything in animal all the other objects down
+    // the line would change as well.
+    
+    function addNew() {
+        // to convert arguments object to an array.
+        var myArr1 = Array.prototype.slice.apply(arguments);
+        console.log(myArr1);
+    }
+    
+    addNew(1,2);
+    addNew(2,3,4,5);
+    
+    
+    
+// ========== some programming tips ==============
+    
+    if ("condition1") {
+        val = "something";
+    } else if ("condition2") {
+        val = "something else";
+    } else {
+        val = "something else else";
+    }
+    
+    // can also be written as,
+    val = "condition1" ? "something" : "condition2" ? "something else" : "something else else" 
+    // or something like that, you got the picture !! :)
+    
+</script>
+
