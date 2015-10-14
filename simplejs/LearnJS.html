@@ -110,7 +110,9 @@
     
 // ============================== IIFE - Immediately invoked functions
     
-    // These are  very useful to make a piece of code execute there and then without worrying about the variable pollution it might do as none fo the variables would escape outside the boundary of the function !!
+    // These are  very useful to make a piece of code execute there and then without worrying about
+    // the variable pollution it might do as none fo the variables would escape outside the boundary
+    // of the function !!
     
     
     console.log(myArr[0]);
@@ -126,7 +128,11 @@
 // =============== closures =======================
 
 /**
-Anything that outlives the scope of its outer function sticks around and anything that those things depend on those stick around too, even though the function execution is complete. In normal cases the variables declared inside of a function go away as soon as the function execution completes. This behavior is called CLOSURE.
+Anything that outlives the scope of its outer function sticks around and anything that those things
+depend on those stick around too, even though the function execution is complete. In normal cases
+the variables declared inside of a function go away as soon as the function execution completes.
+
+This behavior is called CLOSURE.
 
 bind() can be used to bind a particular value to a closure - but this works only in IE9 !!.
 Can use function inside a function to have closure implemented and lock in the value.
